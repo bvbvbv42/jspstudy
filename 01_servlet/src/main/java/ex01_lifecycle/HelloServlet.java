@@ -109,18 +109,17 @@ public class HelloServlet extends HttpServlet {
 	}
 
 	/**
-	 * 5. doPost()
-	 *   1) POST 방식의 요청을 처리하는 메소드이다.
-	 *   2) 기본적으로 POST 방식의 요청이 오더라도 doGet()으로 처리를 이관한다.
-	 *   3) POST 방식으로 요청하는 방법
+   * 5. doPost()
+   *   1) POST 방식의 요청을 처리하는 메소드이다.
+   *   2) 기본적으로 POST 방식의 요청이 오더라도 doGet()으로 처리를 이관한다.
+   *   3) POST 방식으로 요청하는 방법
    *     (1) <form method="post" action="/servlet/HelloServlet">
-   *     (3) location.href = '/servlet/HelloServlet"
-   *     (4) window.open('/servlet/HelloServlet', '', '')
-   *     (5) $.ajax({
-   *         type : 'get',
-   *         url: '/servlet/HelloServlet',
-   *         ...
-   *         }) 
+   *     (2) $.ajax({
+   *           type: 'post',
+   *           url: '/servlet/HelloServlet',
+   *           ...
+   *         })
+   *         
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
