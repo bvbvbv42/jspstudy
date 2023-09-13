@@ -1,6 +1,8 @@
 package ex05_redirect;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +28,7 @@ public class Redirect1 extends HttpServlet {
    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
    */
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+ //                                         ㄴ 파라미터 name alice가 옴
     /*
      * redirect
      * 1. 다른 경로로 이동하는 방식 중 하나이다.
@@ -34,9 +36,16 @@ public class Redirect1 extends HttpServlet {
      * 3. 경로를 작성할 때 ContextPath와 URLMapping을 모두 작성한다.
      */
     
+    
+    
+    // 요청 파라미터
+    
+    String name = request.getParameter("name");
+    
+    
     // redirect할 경로를 응답함
-    response.sendRedirect("/servlet/redirect2");
-
+    response.sendRedirect("/servlet/redirect2?name=" + URLEncoder.encode(name, "UTF-8"));     // B가 A한테 C한테 가라고 알려줌  
+                                                         // ㄴ    URLEncoder.encode(name, "UTF-8")은 한글보낼때 인코딩을 직접함
 
   }
 
