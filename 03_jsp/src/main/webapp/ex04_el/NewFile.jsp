@@ -51,8 +51,8 @@
   <%-- 우선 순위 확인하기 --%>
   <div>${msg}</div>
   
-  <%-- 각 영역의 속성 확인하기 --%>
-  <div>${pageScope.msg}</div>
+  <%-- 각 영역의 속성 확인하기 (scope를 붙여줘야 함)--%> 
+  <div>${pageScope.msg}</div>         
   <div>${requestScope.msg}</div>
   <div>${sessionScope.msg}</div>
   <div>${applicationScope.msg}</div>
