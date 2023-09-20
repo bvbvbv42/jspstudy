@@ -38,8 +38,8 @@ public class Login extends HttpServlet {
 	  // 로그인 성공 규칙 : id 와 pw가 동일하면 로그인 성공으로 가정하고 풀이
 	  if(id.equals(pw)) {
 	    // 로그인 처리 : session에 id를 저장해 두기
-	    HttpSession session = request.getSession();
-	    session.setAttribute("id", id);
+	    HttpSession session = request.getSession();          // 세션 생성 및 얻기
+	    session.setAttribute("id", id);                      // 세션에 id라는 이름의 세션 값 저장
 	    session.setMaxInactiveInterval(60 * 10);             // 초 기준(10분간 세션 유지)
 	    
 	    

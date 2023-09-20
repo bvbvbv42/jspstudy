@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import common.ActionForward;
 
-public interface BoardService {
+public interface ArticleService {
   public ActionForward register(HttpServletRequest request);
   public ActionForward getBoardList(HttpServletRequest request);
   public ActionForward getBoardByNo(HttpServletRequest request);

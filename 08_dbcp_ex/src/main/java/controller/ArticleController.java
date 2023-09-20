@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
-import service.BoardService;
-import service.BoardServiceImpl;
+import service.ArticleService;
+import service.ArticleServiceImpl;
 
 /**
  * Servlet implementation class BoardController
  */
 @WebServlet("*.do")
-public class BoardController extends HttpServlet {
+public class ArticleController extends HttpServlet {
   private static final long serialVersionUID = 1L;
        
   /**
    * @see HttpServlet#HttpServlet()
    */
-  public BoardController() {
+  public ArticleController() {
     super();
     // TODO Auto-generated constructor stub
   }
@@ -46,12 +46,12 @@ public class BoardController extends HttpServlet {
     ActionForward af = null;
     
     // BoardService 객체 생성
-    BoardService boardService = new BoardServiceImpl();
+    ArticleService boardService = new ArticleServiceImpl();
 
     // 요청에 따른 처리
     switch(urlMapping) {
     // 단순 이동 (forward 처리)
-    case "/article/writeArticle.do":
+    case "/board/write.do":
       af = new ActionForward("/board/write.jsp", false);
       break;
     case "/index.do":

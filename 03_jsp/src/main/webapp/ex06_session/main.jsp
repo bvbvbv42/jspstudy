@@ -19,6 +19,7 @@
 </head>
 <body>
 
+
 <%-- 로그인 안 된 상태 --%>
 <c:if test="${sessionScope.id == null}">
   <div>

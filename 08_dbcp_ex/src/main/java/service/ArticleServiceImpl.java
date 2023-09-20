@@ -8,14 +8,14 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import common.ActionForward;
-import domain.BoardDto;
-import repository.BoardDao;
+import domain.ArticleDto;
+import repository.ArticleDao;
 import util.PageVo;
 
-public class BoardServiceImpl implements BoardService {
+public class ArticleServiceImpl implements ArticleService {
 
   // 모든 서비스가 공동으로 사용하는 BoardDao, PageVo 객체 가져오기
-  private BoardDao dao = BoardDao.getDao();
+  private ArticleDao dao = ArticleDao.getDao();
   private PageVo pageVo = new PageVo();
 
   @Override
@@ -26,7 +26,7 @@ public class BoardServiceImpl implements BoardService {
     String content = request.getParameter("content");
     
     // 제목 + 내용 -> BoardDto 객체
-    BoardDto dto = BoardDto.builder()
+    ArticleDto dto = ArticleDto.builder()
                       .title(title)
                       .content(content)
                       .build();
@@ -69,7 +69,7 @@ public class BoardServiceImpl implements BoardService {
     map.put("end", pageVo.getEnd());
     
     // DB로부터 게시글 목록 가져오기
-    List<BoardDto> boardList = dao.getBoardList(map);
+    List<ArticleDto> boardList = dao.getBoardList(map);
     
     // 게시글 목록과 paging을 /board/list.jsp로 전달하기 위하여 request에 저장한 뒤 forward한다.
     request.setAttribute("boardList", boardList);
@@ -86,7 +86,7 @@ public class BoardServiceImpl implements BoardService {
     int board_no = Integer.parseInt(opt.orElse("0"));
     
     // DB로부터 게시글 가져오기
-    BoardDto board = dao.getBoardByNo(board_no);
+    ArticleDto board = dao.getBoardByNo(board_no);
     
     // 게시글을 /board/detail.jsp에 전달하기 위해서 forward 처리
     request.setAttribute("board", board);
@@ -102,7 +102,7 @@ public class BoardServiceImpl implements BoardService {
     int board_no = Integer.parseInt(opt.orElse("0"));
     
     // DB로부터 게시글 가져오기
-    BoardDto board = dao.getBoardByNo(board_no);
+    ArticleDto board = dao.getBoardByNo(board_no);
     
     // 게시글을 /board/edit.jsp에 전달하기 위해서 forward 처리
     request.setAttribute("board", board);
@@ -119,7 +119,7 @@ public class BoardServiceImpl implements BoardService {
     int board_no = Integer.parseInt(request.getParameter("board_no"));
     
     // 수정할 게시글 정보를 BoardDto 객체로 생성
-    BoardDto dto = BoardDto.builder()
+    ArticleDto dto = ArticleDto.builder()
                     .title(title)
                     .content(content)
                     .board_no(board_no)

@@ -11,9 +11,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import domain.BoardDto;
+import domain.ArticleDto;
 
-public class BoardDao {
+public class ArticleDao {
 
   // 모든 메소드가 공동으로 사용할 객체 선언
   private Connection con;
@@ -24,8 +24,8 @@ public class BoardDao {
   private DataSource dataSource;
   
   // Singleton Pattern으로 BoardDao 객체 생성
-  private static BoardDao dao = new BoardDao();
-  private BoardDao() {
+  private static ArticleDao dao = new ArticleDao();
+  private ArticleDao() {
     // META-INF/context.xml에 있는 <Resource name="jdbc/oraclexe" /> 태그 내용을 읽어서 DataSource 객체 생성하기
     try {
       Context context = new InitialContext();
@@ -35,7 +35,7 @@ public class BoardDao {
       e.printStackTrace();
     }
   }
-  public static BoardDao getDao() {
+  public static ArticleDao getDao() {
     return dao;
   }
   
@@ -51,7 +51,7 @@ public class BoardDao {
   }
   
   // 게시글 등록 메소드
-  public int register(BoardDto dto) {
+  public int register(ArticleDto dto) {
     
     // 등록 결과 선언 (insert 실행 결과는 삽입된 행의 개수이다.)
     int insertResult = 0;
@@ -117,10 +117,10 @@ public class BoardDao {
   }
   
   // 게시글 목록 반환 메소드
-  public List<BoardDto> getBoardList(Map<String, Object> map){
+  public List<ArticleDto> getBoardList(Map<String, Object> map){
     
     // 게시글 목록 저장 List
-    List<BoardDto> list = new ArrayList<BoardDto>();
+    List<ArticleDto> list = new ArrayList<ArticleDto>();
     
     try {
       
@@ -135,7 +135,7 @@ public class BoardDao {
       rs = ps.executeQuery();
       while(rs.next()) {
         // rs -> BoardDto
-        BoardDto dto = BoardDto.builder()
+        ArticleDto dto = ArticleDto.builder()
                         .board_no(rs.getInt(1))
                         .title(rs.getString(2))
                         .content(rs.getString(3))
@@ -158,10 +158,10 @@ public class BoardDao {
   }
   
   // 게시글 반환 메소드
-  public BoardDto getBoardByNo(int board_no) {
+  public ArticleDto getBoardByNo(int board_no) {
     
     // 게시글
-    BoardDto dto = null;
+    ArticleDto dto = null;
     
     try {
       
@@ -173,7 +173,7 @@ public class BoardDao {
       ps.setInt(1, board_no);
       rs = ps.executeQuery();
       if(rs.next()) {
-        dto = BoardDto.builder()
+        dto = ArticleDto.builder()
             .board_no(rs.getInt(1))
             .title(rs.getString(2))
             .content(rs.getString(3))
@@ -194,7 +194,7 @@ public class BoardDao {
   }
   
   // 게시글 수정 메소드
-  public int modify(BoardDto dto) {
+  public int modify(ArticleDto dto) {
     
     // 수정 결과
     int modifyResult = 0;
